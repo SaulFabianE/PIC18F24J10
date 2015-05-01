@@ -27,7 +27,7 @@ void reset(void);
 #define SCK         LATCbits.LATC3		// Clock pin, PORTC pin 3 
 #define IRQ         PORTBbits.RB0		// IRQ input pin, PORTB pin 0
 #define SPI_SCALE	4              		// postscaling of signal 
-#define LED			LATAbits.LATA0
+#define LED			LATCbits.LATC0   //LATAbits.LATA0
 #define DELAY_TIME  0xF800
 #define MISO        LATCbits.LATC5	// Serial output pin, PORTC pin 5 **delete
 #define MOSI        PORTCbits.RC4		// Serial input pin, PORTC pin 4  **delete
@@ -99,7 +99,7 @@ void initialize_pic(void)
     OSCCON= OSCCON | 0b01110000; 
     while (OSCCONbits.OSTS == 0); // wait for oscillator to be ready p44
 	
-    ANCON1bits.PCFG12= 1;    // B0 is set as a digital input p353
+    ANCON1bits.PCFG12= 1;   // B0 is set as a digital input p353
 	TRISCbits.TRISC3 = 0;	// SDO output
 	TRISCbits.TRISC5 = 0;   // SCK output
 	TRISCbits.TRISC2 = 0;	// CSN output
@@ -108,7 +108,8 @@ void initialize_pic(void)
 	CSN = 1;			    // CSN high
 	SCK = 0;			    // SCK low
 	CE	= 0;			    // CE low
-	TRISCbits.TRISC0 = 0; 	// RC0 (LED) output
+	TRISCbits.TRISC0 = 0; 	// LED output
+    
     
     OpenSPI(SPI_FOSC_16, MODE_00, SMPMID); //open SPI1
 	OpenTimer0( TIMER_INT_OFF &
