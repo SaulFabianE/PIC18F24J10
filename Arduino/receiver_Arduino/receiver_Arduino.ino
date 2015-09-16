@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * @FILE reciever_new.ino
+ * @FILE receiver_Arduino.ino
  * @BRIEF UTA Parking App
  *
  * This program recieves data to from the sensing arduino via an nrf24l01 transmitter and sends the recieved data
